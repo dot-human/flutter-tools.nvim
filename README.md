@@ -462,3 +462,5 @@ You can see the output of this by checking the lsp logs. You can do this by runn
 ```
 
 This will open your lsp logs. You can then check for any error messages.
+
+### What happens if I have my own flutter env, e.g. `fvm`?
