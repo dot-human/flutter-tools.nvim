@@ -1,5 +1,11 @@
 # flutter-tools.nvim
 
+## Why a fork?
+
+This fork seeks to demystify the internals of flutter tooling for neovim.
+
+## Original intro
+
 Build flutter and dart applications in neovim using the native LSP. It adds the ability to easily
 launch flutter applications, debug them, as well as extending/exposing LSP functionality such as the
 widget guides, an outline view of your widgets, and hot reloading.
