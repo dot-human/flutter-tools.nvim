@@ -4,6 +4,25 @@
 
 This fork seeks to demystify the internals of flutter tooling for neovim.
 
+## Understanding `lazy` and `nvim-lspconfig`
+
+We use `lazy` to load our plugins, including `nvim-lspconfig`.
+
+We can load the dart LSP from `nvim-lspconfig/lua/lspconfig/dartls.lua`, but how does it find its way inside? For this, we turn to `nvim-lspconfig/lua/lspconfig.lua`.
+
+Within this file, note the metatable index snippet:
+
+```
+function mt:__index(k)
+    ...
+    local success, config = pcall(require, 'lspconfig.configs.' .. k)
+    ...
+    return configs[k]
+end
+```
+
+This `pcall` (which is Lua's way of making a function call that gracefully handles errors) appends `k`, e.g. `dartls` to `lspconfig.configs`. And `require` loads it in. That is how `dartls` gets pulled in.
+
 ## Original intro
 
 Build flutter and dart applications in neovim using the native LSP. It adds the ability to easily
